@@ -1,0 +1,33 @@
+#include <stdio.h>
+int sumNe(int *arr, int n);
+void insertArray(int *arr, int n);
+int main()
+{
+    int n;
+    printf("Please enter a length of the array: ");
+    scanf("%d", &n);
+    int arr[n];
+    insertArray(&arr[0], n);
+    int hasSum = sumNe(&arr[0], n);
+    if(hasSum) printf("There is a member who sum of its negithors\n");
+    else printf("There is NO a member who sum of its negithors\n");
+   
+    return 0;
+}
+
+int sumNe(int *arr, int n){
+    for(int i=0;i<n-2;i++){
+        if(arr[i]+arr[i+2]==arr[i+1]) return 1;
+    }
+    return 0;
+}
+
+void insertArray(int *arr, int n){
+    int num;
+    for(int i=0;i<n;i++)
+        {
+            printf("Please enter value in %d: ", i);
+            scanf("%d",&num);
+            arr[i] = num;
+        }
+}
