@@ -1,0 +1,148 @@
+#include <stdio.h>
+
+void arrCalc(int *arr, int n, int *max, int *sum, double *avg, int *isEven);
+
+void insertValuesIntoArray(int *arr, int n);
+
+void maxInArray(int *arr, int n, int *max);
+
+void sumInArray(int *arr, int n, int *sum);
+
+void avgOfArray(int *arr, int n, double *avg);
+
+void isEvenInArray(int *arr, int n, int *isEven);
+
+
+
+int main()
+
+{
+
+    int max =0;
+
+    int sum = 0;
+
+    double avg = 0;
+
+    int isEven = 0;
+
+
+
+    int n=1;
+
+    while(n){
+
+        int *arr[n];
+
+        printf("\nPlease enter length of the array: ");
+
+        scanf("%d", &n);
+
+        insertValuesIntoArray(arr, n);
+
+        arrCalc(arr, n, &max, &sum, &avg, &isEven);
+
+        printf("The maximum is %d\n", max);
+
+        printf("The sum is %d\n", sum);
+
+        printf("The average is %lf\n", avg);
+
+        if(isEven) printf("There is even number in the array\n");
+
+        else printf("There is NO even number in the array\n");
+
+    }
+
+}
+
+
+
+
+
+void insertValuesIntoArray(int *arr, int n){
+
+    for(int i = 0;i<n;i++){
+
+        printf("Please enter value into the cell no.%d in %d: ", i, n);
+
+        scanf("%d", &arr[i]);
+
+    }
+
+    
+
+}
+
+
+
+void arrCalc(int *arr, int n, int *max, int *sum, double *avg, int *isEven){
+
+    maxInArray(arr, n, max);
+
+    sumInArray(arr, n, sum);
+
+    avgOfArray(arr, n, avg);
+
+    isEvenInArray(arr, n, isEven);
+
+    
+
+}
+
+
+
+void maxInArray(int *arr, int n, int *max){
+
+    *max = *arr;
+
+    for(int i=0;i<n;i++){
+
+        if(*max<arr[i]) *max = arr[i];
+
+    }
+
+}
+
+
+
+void sumInArray(int *arr, int n, int *sum){
+
+    *sum = 0;
+
+    for(int i=0;i<n;i++) *sum+=arr[i];
+
+}
+
+
+
+void avgOfArray(int *arr, int n, double *avg){
+
+    *avg =0;
+
+    for (int i=0;i<n;i++) *avg+=arr[i];
+
+    *avg/=n;
+
+}
+
+
+
+void isEvenInArray(int *arr, int n, int *isEven){
+
+    *isEven = 0;
+
+    for(int i=0;i<n;i++){
+
+        if(arr[i]%2 == 0) {
+
+            *isEven = 1;
+
+            return;
+
+        }
+
+    }
+
+}
+
