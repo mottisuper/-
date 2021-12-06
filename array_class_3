@@ -1,0 +1,67 @@
+#include <stdio.h>
+void inputArray(int *arr, int n);
+int nonRecEx3(int *arr, int n, int* move);
+int recEx3(int *arr, int n, int *move);
+
+int main()
+{
+    int n;
+    int move = -1;
+    printf("Please enter length of the array: ");
+    scanf("%d", &n);
+    int arr[n];
+    inputArray(&arr[0], n);
+    //int getValue = nonRecEx3(&arr[0],n,&move);
+    //printf("Non Rec: Return value: %d, Moved value: %d\n", getValue, move);
+    int getValue = recEx3(&arr[0],n,&move);
+    printf("Rec: Return value: %d, Moved value: %d\n", getValue, move);
+
+    return 0;
+}
+
+int nonRecEx3(int *arr, int n, int *move){
+    int asc = 1; //non asc:asc=0 , very asc:asc=1 , asc:asc=2
+    for(int i=0;i<n-1;i++){
+        if(arr[i]==arr[i+1]) asc=2;
+        else if(arr[i]>arr[i+1]) {
+            asc=0;
+            break;
+        }
+    }
+    if(asc==0){
+        *move = 0;
+        return 0;
+    }
+    else if(asc==1)
+    {
+        *move = 1;
+        return 1;
+    }
+    else{
+        *move = 0;
+        return 1;
+    }
+}
+
+int recEx3(int *arr, int n, int *move){
+    if(*move!=0) *move =1;
+        if(n>1){
+            if(*arr==*(arr+1)){
+                *move=0;
+                return recEx3(arr+1, n-1, move);
+            }
+            else if(*arr>*(arr+1)){
+                *move =0;
+                return 0;
+            }
+            else return recEx3(arr+1, n-1, move);
+        }
+        return 1;
+}
+
+void inputArray(int *arr, int n){
+    for(int i=0;i<n;i++){
+        printf("Please enter value no.%d: ", i);
+        scanf("%d", &arr[i]);
+    }
+}
