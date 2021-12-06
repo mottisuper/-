@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <stdlib.h>
+int* ex3(int* a, int* b);
+
+int main() {
+int a[] = {1, 2, 1};
+int b[] = { 3, 3, 3 };
+int* new = ex3(a, b);
+printf("(%d, %d, %d)\n", *(new), *(new + 1), *(new + 2));
+
+return 0;
+}
+
+int* ex3(int* a, int* b) {
+int* new = (int*)calloc(3, sizeof(int));
+*(new) = (*(a + 1)) * (*(b + 2)) - (*(a + 2)) * (*(b + 1));
+*(new+1) = (*(a + 2)) * (*(b)) - (*(a)) * (*(b + 2));
+*(new+2) = (*(a)) * (*(b + 1)) - (*(a + 1)) * (*(b));
+return new;
+}
