@@ -1,0 +1,93 @@
+#include <stdio.h>
+
+#include <stdlib.h>
+
+int*ex5(int *a, int n, int*size);
+
+void printArray(int*a, int n);
+
+
+
+int main(){
+
+    
+
+    int newSize;
+
+    
+
+    int arr[] = {0,1,1,0,3,5};
+
+    int *returnArray = ex5(arr, 6,&newSize);
+
+    printArray(returnArray, newSize);
+
+    printf("SIZE is %d\n", newSize);
+
+    
+
+    int arr1[] = {1,4,3,4,6,7,9,3,1,6};
+
+    returnArray = ex5(arr1, 10,&newSize);
+
+    printArray(returnArray, newSize);
+
+    printf("SIZE is %d\n", newSize);
+
+    return 0;
+
+}
+
+
+
+int *ex5(int *a, int n, int*size){
+
+    int*counters = (int*)calloc(n+1,sizeof(n));
+
+    for(int i=0;i<n;i++){
+
+        *(counters+a[i])= *(counters+a[i]) +1 ;
+
+    }
+
+  
+
+
+
+    int*arrayOfZero = (int*)calloc(0, sizeof(int));
+
+    int counter = 0;
+
+    for(int i=0;i<n+1;i++){
+
+        if(counters[i]==0){
+
+            arrayOfZero = (int*)realloc(arrayOfZero, (counter+1)*sizeof(int));
+
+            arrayOfZero[counter] = i;
+
+            counter++;
+
+        }
+
+   }
+
+    *size = counter;
+
+    return arrayOfZero;
+
+}
+
+
+
+void printArray(int*a, int n){
+
+    for(int i=0;i<n-1;i++)
+
+    printf("%d,", a[i]);
+
+    printf("%d\n", a[n-1]);
+
+    
+
+}
