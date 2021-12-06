@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+int*ex9(int*a, int n, int amount);
+void printArray(int*a, int n);
+
+int main()
+{
+    int arr1[] = {1,6,2,3,4,2};
+    printArray(ex9(arr1,6,3),6);
+
+    int arr2[] = {1,6,2,3,4,2};
+    printArray(ex9(arr2,6,1),6);
+   
+    int arr3[] = {1,6,2,3,4,2};
+    printArray(ex9(arr3,6,6),6);
+
+    int arr4[] = {1,6,2,3,4,2};
+    printArray(ex9(arr4,6,23),6);
+
+
+    return 0;
+
+}
+
+int*ex9(int*a, int n, int amount){
+    int *newArray = (int*)calloc(n, sizeof(int));
+    amount %=n;
+    int*ptr = newArray+(amount);
+    int counter = amount;
+    for(int i=0;i<n;i++){
+        *ptr = a[i];
+       if(counter<n-1){
+            counter++;
+            ptr++;
+        }
+        else {
+            counter = 0;
+            ptr = newArray;
+        }
+    }
+    return newArray;
+}
+
+void printArray(int*a, int n){
+    for(int i=0;i<n-1;i++)
+        printf("%d, ", a[i]);
+    printf("%d\n", a[n-1]);
+   
+}
