@@ -1,0 +1,54 @@
+#include <stdio.h>
+void insertValueIntoArray(int *arr,int n);
+int ex11(int*arr, int n);
+int ex11Rec(int* arr, int n);
+
+int main()
+{
+    int n =1;
+    while(n){
+        printf("Please enter a size of the array: ");
+        scanf("%d", &n);
+        int arr[n];
+        insertValueIntoArray(arr, n);
+ //       int returnValue1 = ex11(arr, n);
+ //       printf("(1)The result is %d\n", returnValue1);
+        int returnValue2 = ex11Rec(&arr[0], n);
+        printf("(2)The result is %d\n", returnValue2);
+    }
+    return 0;
+}
+
+int ex11(int *arr, int n){
+    for(int i=0;i<n-1;i++)
+    {
+        //printf("arr[i] = %d, arr[i+1] = %d\n", arr[i], arr[i+1]);
+        if(arr[i]<arr[i+1]){
+            arr[i+1] +=arr[i];
+        }
+        else return 0;
+    }
+    return 1;
+}
+
+int ex11Rec(int *arr, int n){
+    if(n>1){
+        if(*arr<*(arr+1))
+        {  
+            //printf("*arr = %d, *(arr+1) = %d\n", *arr, *(arr+1));
+            *(arr+1)+=*arr;
+            return ex11Rec(arr+1,n-1);
+        }
+        else return 0;
+    }
+    return 1;
+}
+
+
+void insertValueIntoArray(int *arr, int n){
+    for(int i=0; i<n;i++){
+        printf("Please enter value into cell no.%d: ", i);
+        scanf("%d", arr+i);
+    }
+   
+}
