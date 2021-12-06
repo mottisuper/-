@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdlib.h>
+int* ex4(int* a, int n);
+void printArray(int*a, int n);
+int main() {
+int arr[] = { 1,2,2,4,1 };
+int newArray = ex4(arr, 5);
+printArray(newArray, 5);
+
+return 0;
+}
+
+int*ex4(int* a, int n) {
+
+int* newArray = (int*)calloc(n, sizeof(int));
+int sum = 1;
+for (int i = 0; i < n; i++) {
+for (int j = 0; j < n; j++) {
+if (i != j) sum *= *(a + j);
+}
+*(newArray + i) = sum;
+sum = 1;
+}
+return newArray;
+}
+
+void printArray(int* a, int n) {
+for (int i = 0; i < n; i++) {
+printf("(%d) %d\n", i, *(a + i));
+}
+
+}
