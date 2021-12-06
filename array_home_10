@@ -1,0 +1,36 @@
+#include <stdio.h>
+int ex10(double *arr, int n);
+void insertValueIntoArray(double *arr,int n);
+#define SIZE 4
+int main()
+{
+    int ans =1;
+    while(ans){
+        double arr[SIZE] = {};
+        insertValueIntoArray (arr, SIZE);
+        printf("Result is %d\n", ex10(arr, SIZE));
+        printf("You want to try again (1=yes/0=no): ");
+        scanf("%d",&ans);
+    }
+    return 0;
+}
+
+int ex10(double *arr, int n){
+    if(n>1){
+        int left1 = 1*(*arr);
+        double right1 = *arr-left1;
+        int left2 = 1*(*(arr+1));
+        double right2 = *(arr+1)-left2;
+        if(left1<=left2 && right1>right2) return ex10(arr+1, n-1);
+        else return 0;
+    }
+    return 1;
+}
+
+void insertValueIntoArray(double *arr, int n){
+    for(int i=0; i<n;i++){
+        printf("Please enter value into cell no.%d: ", i);
+        scanf("%lf", arr+i);
+    }
+   
+}
