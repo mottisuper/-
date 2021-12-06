@@ -1,0 +1,52 @@
+#include <stdio.h>
+void maxmax(int*a, int n, int*max_even, int*even, int*max_odd, int*odd);
+void insertValuesIntoArray(int *arr, int n);
+
+int main()
+{
+    int even, odd;
+    int max_even, max_odd;
+    int n = 1;
+    while(n){
+        printf("Please enter a size of the array: ");
+        scanf("%d", &n);
+        int arr[n];
+        insertValuesIntoArray(&arr[0], n);
+        maxmax(&arr[0], n, &max_even, &even, &max_odd, &odd);
+        printf("Even = %d, Max_even = %d\n", even, max_even);
+        printf("Odd = %d, Max_odd = %d\n", odd, max_odd);
+    }
+
+
+    return 0;
+}
+
+
+void maxmax(int*a, int n, int*max_even, int*even, int*max_odd, int*odd){
+   
+    *even = 0;
+    *odd = 0;
+    *max_even = 0;
+    *max_odd = 0;
+   
+    for(int i=0;i<n;i++){
+     if(a[i]%2==0){
+         if(*even==0) *max_even = a[i];
+         else if (*max_even < a[i]) *max_even = a[i];
+         *even=1;
+     }
+     else{
+         if(*odd==0) *max_odd = a[i];
+         else if (*max_odd < a[i]) *max_odd = a[i];
+         *odd = 1;  
+     }
+     
+    }
+}
+
+void insertValuesIntoArray(int *arr, int n){
+    for(int i=0;i<n;i++){
+     printf("Please enter value into cell no.%d: ", i);
+     scanf("%d", arr+i);
+    }
+}
