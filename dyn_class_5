@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
+int ex5(int*arr, int n, int a, int b);
+
+int main()
+{
+    int arr1[8] = {5, 5, 1, 4, 4, 4, 7, 7};
+    //printf("The result of the arr1 is %d\n", ex5(arr1, 8, 1, 8));
+    int arr2[8] = {5, 1, 6, 6, 9, 9};
+    //printf("The result of the arr1 is %d\n", ex5(arr2, 6, 1, 9));
+    int arr3[15] = {1, 2, 7, 7, 7, 7, 3, 4, 5, 3, 7, 3, 3, 5, 10};
+    printf("The result of the arr1 is %d\n", ex5(arr3, 15, 1, 12));
+
+    return 0;
+}
+
+
+int ex5(int*arr, int n, int a, int b){
+    if(a>=b){
+        printf("Error: a>=b");
+        return -1;
+    }
+   
+    int*counter = (int*)calloc(b+1, sizeof(int));
+   
+    for(int i=0;i<n;i++){
+        if(*(arr+i) > b ||  *(arr+i)<a){
+            printf("Value in the cell no.%d is not between %d to %d\n", i, a, b);
+            return -1;
+        }
+       
+        //printf("%d\n", *(arr+i));
+        *(counter+ *(arr+i)) = *(counter+*(arr+i)) + 1;
+    }
+
+    //for(int i = 0;i<b+1;i++)
+    //    printf("(%d) %d\n", i, *(counter+i));
+
+
+    int max = a;
+    int min = b+1;
+    int pMax = 0;
+    int pMin = 0;
+   
+   
+   
+    for(int i=0;i<=b;i++){
+        //printf("(%d), *conunter = %d, max = %d, min = %d, pMax = %d, pMin = %d\n", i,*(counter+i),max, min, pMax, pMin);
+
+ 
+         if(max<=*(counter+i)){
+            max = *(counter+i);
+            pMax = i;
+        }
+        if(min>*(counter+i)&& *(counter+i)>0){
+            min = *(counter+i);
+            pMin = i;
+        }
+ 
+    }
+   
+    return pMax - pMin;
+   
+}
