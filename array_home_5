@@ -1,0 +1,56 @@
+#include <stdio.h>
+int ex5(int*arr, int n, int key, int*a, int*b);
+int insertValuesIntoArray(int*arr, int n);
+
+
+int main()
+{
+    int arr[]={1,6,2,4,3};
+    int key = 1;
+    int a, b;
+    int n;
+   
+    while(key){
+        printf("Please enter a size of the key: ");
+        scanf("%d", &key);
+        printf("Please enter a size of the array: ");
+        scanf("%d", &n);
+        int arr[n];
+        insertValuesIntoArray(&arr[0], n);
+        int returnValue = ex5(&arr[0], n, key, &a, &b);
+        printf("ReturnValue = %d, a=%d, b=%d\n", returnValue, a, b);
+    }
+    return 0;
+}
+
+int ex5(int*arr, int n, int key, int*a, int*b){
+    int min = arr[0]+arr[1];
+    *a = arr[0];
+    *b = arr[1];
+    int j=0;
+    for(int i=0;i<n-1;i++){
+        j=i+1;
+        for(;j<n;j++)
+        {
+            //printf("i = %d, j = %d, arr[i] = %d, arr[j] = %d, min = %d\n", i, j, arr[i], arr[j], min);
+            if(arr[i]+arr[j]<min){
+                min = arr[i]+arr[j];
+                *a = arr[i];
+                *b = arr[j];
+            }
+        }
+    }
+    if(min<key) return 1;
+    else{
+        *a=-1;
+        *b=-1;
+        return 0;
+    }
+}
+int insertValuesIntoArray(int*arr, int n){
+    for(int i=0;i<n;i++){
+        printf("Enter a value into arr[%d]: ", i);
+        scanf("%d", &arr[i]);
+    }
+   
+}
