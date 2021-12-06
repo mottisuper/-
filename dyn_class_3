@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+int ex3(int n, int*v);
+void printArray(int*a, int n);
+void inputArray(int*a, int n);
+
+int main()
+{
+    int v = 0;
+    int n = 0;
+    printf("Please enter a size of the array: ");
+    scanf("%d", &n);
+    int returnValue = ex3(n, &v);
+    printf("Most: %d, it shown in the array %d times\n",returnValue, v);
+    return 0;
+}
+
+void printArray(int*a, int n){
+    for(int i=0;i<n;i++)
+        printf("(%d) %d\n",i, *(a+i));
+    printf("\n");
+}
+
+
+int ex3(int n, int*v){
+    int*a = (int*)calloc(n, sizeof(int));
+    inputArray(a, n);
+    int*b = (int*)calloc(10, sizeof(int));
+    for(int i=0;i<n;i++)
+        *(b+*(a+i)) = *(b+*(a+i)) + 1 ;
+    int r = 0;
+    for(int i=0;i<10;i++)
+        if(r<*(b+i)){
+            *v = *(b+i);
+            r = i;
+        }
+    return r;
+}
+
+void inputArray(int*a, int n){
+    int num=0;
+    for(int i=0;i<n;i++){
+        printf("Please enter value between 0-9 into cell no.%d: ", i);
+            scanf("%d", &num);
+            while(num>9 || num<0){
+                    printf("\nPlease enter again value: ");
+                    scanf("%d", &num);
+            }
+            *(a+i) = num;
+    }
+}
