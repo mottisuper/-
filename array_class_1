@@ -1,0 +1,30 @@
+#include <stdio.h>
+void inputArray(int *, int);
+void printArray(int *, int);
+
+
+int main()
+{
+    int n = 10;
+    int array[n];
+    printf("Please enter 10 numbers (after every number press ENTER)\n");
+    inputArray(&array[0], n);
+    //inputArray(array, n); //It can be used instead of &array[0]
+    printArray(&array[0], n);
+    //printArray(array, n);  //It can be used instead of &array[0]  
+    return 0;
+}
+
+void inputArray(int * first, int length){
+   int num;
+   for(int i=0; i<length;i++){
+    scanf("%d", &num);
+    first[i] = num;
+   }
+   printf("\n");
+}
+
+void printArray(int * first, int length){
+   for(int i=0; i<length;i++)
+    printf("(%d) %d\n", i, first[i]);
+}
