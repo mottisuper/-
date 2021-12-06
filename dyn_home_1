@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+double* ex1(int size);
+void print_array(double*arr, int n);
+
+int main()
+{
+    int n;
+    printf("Please enter a size of the array: ");
+    scanf("%d", &n);
+    double *a = ex1(n);
+    print_array(a, n);
+    free(a);
+    return 0;
+}
+
+double*ex1(int n){
+    double*ptr = (double*)malloc(n*sizeof(double));
+    for(int i=0;i<n;i++){
+        printf("Please enter value into cell no.%d :", i);
+        scanf("%lf", ptr+i);
+    }
+    return ptr;
+}
+
+void print_array(double*arr, int n){
+    for(int i=0;i<n;i++)
+        printf("%.2lf, ", *(arr+i));
+    printf("\n");
+}
