@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+int ex7(int*a, int n);
+
+
+int main()
+{
+    int arr1[9] = {1,4,2,2,3,3,2,2,7};
+    int arr2[9] = {1,4,2,2,3,3,2,2,9};
+    int arr3[9] = {1,4,2,2,3,3,2,2,4};
+
+    printf("arr1 = %d\n", ex7(arr1, 9));
+    printf("arr2 = %d\n", ex7(arr2, 9));
+    printf("arr3 = %d\n", ex7(arr3, 9));
+    return 0;
+}
+
+int ex7(int*a, int n){
+    int*counters = (int*)calloc(n+1,sizeof(int));
+    for(int i=0;i<n;i++)
+        counters[a[i]]++;
+    int max = 0;
+    int num = -1;
+    for(int i=0;i<n+1;i++)
+        if(max<=counters[i]*i){
+            max = counters[i]*i;
+            num = i;
+        }
+        return num;
+}
