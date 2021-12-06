@@ -1,0 +1,68 @@
+#include <stdio.h>
+
+#include <math.h>
+
+double ex2(int num, int digit, int*amount);
+
+
+
+int main(){
+
+    int amount = 0;
+
+    int num=1, digit = 1;
+
+    while(num){
+
+        printf("Please enter a number: ");
+
+        scanf("%d", &num);
+
+        printf("Please enter a digit (1-9): ");
+
+        do{
+
+            scanf("%d", &digit);
+
+        }while(digit>9 || digit<1);
+
+        double returnValue = ex2(num, digit, &amount);
+
+        printf("Amount == %d, returnValue == %.2lf\n", amount, returnValue);
+
+    }
+
+    return 0;
+
+}
+
+
+
+double ex2(int num, int digit, int*amount){
+
+    double ave = 0;
+
+    int counter = 0;
+
+    while(num){
+
+        if(num%10<digit){
+
+            counter++;
+
+            ave+=num%10;
+
+        }
+
+        num/=10;
+
+    }
+
+    if(counter) ave/=counter;
+
+    *amount = counter;
+
+    return fabs(ave);
+
+}
+
