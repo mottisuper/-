@@ -1,0 +1,98 @@
+//בשביל ויזואל סטודיו 2019
+
+#include <stdio.h>
+void changeArray(int* arr, int n);
+void insertArray(int* arr, int n);
+void printAllArray(int* arr, int n);
+void recChangeArray(int* arr, int n);
+
+int main() {
+    const int n=5;
+    //printf("Please enter a length of the array: ");
+    //scanf_s("%d", &n);
+    int arr[5];
+    insertArray(&arr[0], n);
+    //changeArray(&arr[0], n);
+    recChangeArray(&arr[0], n);
+    printAllArray(&arr[0], n);
+    return 0;
+}
+
+void insertArray(int* arr, int n) {
+    for (int i = 0; i < n; i++) {
+        printf("Please enter a value no.%d: ", i);
+        scanf_s("%d", &arr[i]);
+    }
+}
+
+void changeArray(int* arr, int n) {
+    for (int i = 0, j = n-1; i < j; i++, j--) {
+        arr[i] -= arr[j];
+        arr[j] += arr[i];
+        arr[i] = arr[j] - arr[i];
+    }
+}
+
+void recChangeArray(int* arr, int n) {
+    if (&arr[0] < &arr[n-1]) {
+        arr[0] -= arr[n - 1];
+        arr[n - 1] += arr[0];
+        arr[0] = arr[n - 1] - arr[0];
+        recChangeArray(arr + 1, n - 2);
+    }
+}
+
+void printAllArray(int* arr, int n) {
+    for (int i = 0; i < n; i++)
+        printf("%d, ", arr[i]);
+    printf("\n");
+}
+
+//בשביל online Compiler
+#include <stdio.h>
+void changeArray(int* arr, int n);
+void insertArray(int* arr, int n);
+void printAllArray(int* arr, int n);
+void recChangeArray(int* arr, int n);
+
+int main() {
+    int n;
+    printf("Please enter a length of the array: ");
+    scanf("%d", &n);
+    int arr[n];
+    insertArray(&arr[0], n);
+    //changeArray(&arr[0], n);
+    recChangeArray(&arr[0], n);
+    printAllArray(&arr[0], n);
+    return 0;
+}
+
+void insertArray(int* arr, int n) {
+    for (int i = 0; i < n; i++) {
+        printf("Please enter a value no.%d: ", i);
+        scanf("%d", &arr[i]);
+    }
+}
+
+void changeArray(int* arr, int n) {
+    for (int i = 0, j = n-1; i < j; i++, j--) {
+        arr[i] -= arr[j];
+        arr[j] += arr[i];
+        arr[i] = arr[j] - arr[i];
+    }
+}
+
+void recChangeArray(int* arr, int n) {
+    if (&arr[0] < &arr[n-1]) {
+        arr[0] -= arr[n - 1];
+        arr[n - 1] += arr[0];
+        arr[0] = arr[n - 1] - arr[0];
+        recChangeArray(arr + 1, n - 2);
+    }
+}
+
+void printAllArray(int* arr, int n) {
+    for (int i = 0; i < n; i++)
+        printf("%d, ", arr[i]);
+    printf("\n");
+}
