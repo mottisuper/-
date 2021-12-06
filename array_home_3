@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+#include <math.h>
+
+double ex3(double*c, double*x, double*n);
+
+
+
+int main(){
+
+    double c=1, x, n;
+
+    while(c){
+
+        printf("Please enter c:");
+
+        scanf("%lf", &c);
+
+        printf("Please enter x:");
+
+        scanf("%lf", &x);
+
+        printf("Please enter n:");
+
+        scanf("%lf", &n);
+
+        double returnValue = ex3(&c, &x, &n);
+
+        printf("The result of %.2lf*(%.2lf)^%.24lf is %lf\n",c, x, n, returnValue);
+
+    }
+
+    return 0;
+
+}
+
+
+
+
+
+double ex3(double*c, double*x, double*n){
+
+    *c*=*n;
+
+    (*n)--;
+
+    return *c*pow(*x, *n);
+
+}
