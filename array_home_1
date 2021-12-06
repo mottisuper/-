@@ -1,0 +1,40 @@
+//Visual Stdio 2019
+
+#include <stdio.h>
+void swapCells(int* num1Ptr, int* num2Ptr, int* num3Ptr);
+
+int main() {
+int a=1, b, c;
+while (a) { //To stop the loop, it needs be three values, two of them must be negative and other value must be zero
+printf("Please enter enter first number: ");
+scanf_s("%d", &a);
+printf("Please enter enter second number: ");
+scanf_s("%d", &b);
+printf("Please enter enter third number: ");
+scanf_s("%d", &c);
+swapCells(&a, &b, &c);
+printf("a=%d, b=%d, c=%d\n", a, b, c);
+}
+
+return 0;
+}
+
+void swapCells(int* num1Ptr, int* num2Ptr, int* num3Ptr) {
+int max = *num1Ptr;
+max = *num2Ptr > max ? *num2Ptr:max;
+max = *num3Ptr > max ?*num3Ptr:max;
+
+int min = *num1Ptr;
+min = *num2Ptr < min ? *num2Ptr : min;
+min = *num3Ptr < min ? *num3Ptr : min;
+
+int middle;
+if (*num1Ptr<max && *num1Ptr>min) middle = *num1Ptr;
+else if (*num2Ptr<max && *num2Ptr>min) middle = *num2Ptr;
+else middle = *num3Ptr;
+
+*num1Ptr = max;
+*num2Ptr = middle;
+*num3Ptr = min;
+
+}
