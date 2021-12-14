@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+char*ex1(char*, int);
+
+int main()
+{
+    char word[30];
+    printf("Please enter word can be cocnsists of only ABC letters and space(s): ");
+    scanf("%29[^\n]s", word);
+    char * ptrChar;
+    ptrChar = ex1(word, strlen(word));
+    printf("The new string is %s\n", ptrChar);
+ 
+    return 0;
+}
+
+char*ex1(char*str, int size){
+    char*newWord = (char*)malloc(size*sizeof(char)*2);
+    strcpy(newWord, str);
+    strcat(newWord, str);
+    return newWord;
+}
