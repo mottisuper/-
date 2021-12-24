@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <string.h>
+int ex5(char s[]);
+
+int main(){
+    printf("tacocat == %d\n", ex5("tacocat"));
+    printf("notpolindrom == %d\n", ex5("notpolindrom"));
+    printf("HellokikolleH == %d\n", ex5("HellokikolleH"));
+    printf("aba == %d\n", ex5("aba"));
+    printf("abba == %d\n", ex5("abba"));
+    printf("abbba == %d\n", ex5("abbba"));
+    printf("abcda == %d\n", ex5("abcda"));
+
+}
+
+int ex5(char s[]){
+    int length = (int)strlen(s);
+    char *ptrR = &s[length-1];
+    char *ptrL = s;
+    
+    while(ptrR>ptrL){
+        if(*ptrR != *ptrL)
+            return 0;
+        ptrL++;
+        ptrR--;
+    }
+    return 1;
+    
+}
