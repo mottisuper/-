@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <string.h>
+int ex3(char s[]);
+
+int main(){
+    printf("%s return : %d\n", "This is valid", ex3("This is valid"));
+    printf("%s return : %d\n", "THIS IS VALID", ex3("THIS IS VALID"));
+    printf("%s return : %d\n", "this is valid", ex3("this is valid"));
+    printf("%s return : %d\n", "ThIs iS Not vAlid", ex3("ThIs iS Not vAlid"));
+    printf("%s return : %d\n", "A Lion in the house", ex3("A Lion in the house"));
+    printf("%s return : %d\n", "A lion in the house", ex3("A lion in the house"));
+    printf("%s return : %d\n", "a lion in the house", ex3("a lion in the house"));
+    printf("%s return : %d\n", "A LION IN THE HOUSE", ex3("A LION IN THE HOUSE"));
+}
+
+int ex3(char s[]){
+    if(strlen(s)<3) return -1;
+    char max=0, min=0;
+    int spaceInSecondPlace = 0;
+    if(s[0]>='a' && s[0]<='z' && s[1]>='A' && s[1]<='Z') return 0;
+    else{
+        if(s[1]>='a' && s[1]<='z'){
+            max = 'z';
+            min = 'a';
+        }
+        else if(s[1]>='A' && s[1]<='Z'){
+            max = 'Z';
+            min = 'A';
+        }
+    }
+
+    if(s[1] == ' '){ // if the second chartachr is space like 'A lion in the house'
+        spaceInSecondPlace = 1;
+        if(s[0]>='a' && s[0]<='z' && s[2]>='A' && s[2]<='Z') return 0;
+        else{
+            if(s[2]>='a' && s[2]<='z'){
+                max = 'z';
+                min = 'a';
+            }
+            else if(s[2]>='A' && s[2]<='Z'){
+                max = 'Z';
+                min = 'A';
+            }
+        }
+    }
+
+    for(int i= 1+spaceInSecondPlace;i<strlen(s);i++){
+        if(s[i] != ' '){
+            if(s[i]<min || s[i]>max) return 0;
+        }
+    }
+    return 1;
+}
