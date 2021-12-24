@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+char ex2(char s[], int *times);
+
+
+int main(){
+    char s[] = "strings seem silly";
+    char s1[] = "Good Morning, Vietnam!";
+    int times = 0;
+    int times1 = 0;
+    char letter1 = ex2(s, &times);
+    printf("The letter that its maximaal showing is %c and it shown %d times\n", letter1, times);
+    printf("\n");
+    char letter2 = ex2(s1,&times1);
+    printf("The letter that its maximaal showing is %c and it shown %d times\n", letter2, times1);
+
+}
+
+
+char ex2(char s[], int *times){
+    char a = 'a';
+    char z = 'z';
+    int * counters = (int*)calloc((z-a), sizeof(int));
+    for(int i=0;i<strlen(s); i++){
+        if(s[i]>=a && s[i]<=z)
+            counters[s[i]-a]++;
+    }
+    
+    
+    char letter ='A';
+    *times = 0;
+    for(int i=0;i<=z-a;i++){
+        if(*times < counters[i]){
+        *times = counters[i];
+            letter = a+i;
+        }
+    }
+    return letter;
+}
