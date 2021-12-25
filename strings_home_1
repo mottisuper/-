@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+int ex1(char s1[], char s2[]);
+char* removeCharByIndex(char s[], int index);
+int main(){
+    printf("jim and mojair == %d\n", ex1("jim", "mojair"));
+    printf("mim and mojoir == %d\n", ex1("mim", "mojair"));
+    printf("shaul and shem ahad == %d\n", ex1("shaul", "shem ahad"));
+    printf("gomaz and mazogia == %d\n", ex1("gomaz", "mazogia"));
+
+//    char s1[] = "Hello World";
+//    char * s2 = removeCharByIndex(s1, 3);
+//    puts(s1);
+//    printf("\n");
+//    puts(s2);
+    
+
+}
+
+int ex1(char s1[], char s2[]){
+    char *newStr = (char*)calloc(strlen(s2), sizeof(char));
+    newStr = s2;
+    int flag = 0;
+    for(int i=0;i<strlen(s1);i++){
+        for(int j=0;j<strlen(newStr);j++){
+            if(s1[i]==newStr[j]){
+                newStr = removeCharByIndex(newStr, j);
+                flag = 1;
+            }
+        }
+        if(flag) flag = 0;
+        else return 0;
+    }
+    return 1;
+}
+
+
+
+
+
+
+char * removeCharByIndex(char s[], int index){
+    if(index>strlen(s))return NULL;
+    int len = (int)strlen(s);
+    char *newStr = (char*)calloc(len, sizeof(char));
+    char *ptr = newStr;
+    for(int i=0;i<strlen(s);i++){
+        if(i!=index){
+            *ptr=s[i];
+            ptr++;
+        }
+    }
+    *ptr=0;
+    return newStr;
+}
