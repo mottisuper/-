@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int ex1( char *str1, char *str2){
+    int temp[26] = {};
+
+    while(*str2){
+        int letterPos = *(str2) - 'a';
+        temp[letterPos]++;
+        str2++;
+    }
+
+    while(*str1){
+        char letter = *(str1);
+        int letterPos = letter - 'a';
+        if( temp[letterPos] == 0){
+            return 0;
+        }
+
+        temp[letterPos]--;
+        str1++;
+    }
+    return 1;
+}
+
+
+int main(){
+    
+    char st1[] = "mim";
+    char st2[] = "majoim";
+    int res = ex1(st1,st2);
+    printf("Res is: %d\n", res);
+    return 1;
+}
