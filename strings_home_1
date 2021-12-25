@@ -3,11 +3,14 @@
 #include <stdlib.h>
 int ex1(char s1[], char s2[]);
 char* removeCharByIndex(char s[], int index);
+void printChars(char * s);
+
 int main(){
     printf("jim and mojair == %d\n", ex1("jim", "mojair"));
     printf("mim and mojoir == %d\n", ex1("mim", "mojair"));
     printf("shaul and shem ahad == %d\n", ex1("shaul", "shem ahad"));
     printf("gomaz and mazogia == %d\n", ex1("gomaz", "mazogia"));
+    printf("mim and majoim == %d\n", ex1("mim", "majoim"));
 
 //    char s1[] = "Hello World";
 //    char * s2 = removeCharByIndex(s1, 3);
@@ -22,11 +25,15 @@ int ex1(char s1[], char s2[]){
     char *newStr = (char*)calloc(strlen(s2), sizeof(char));
     newStr = s2;
     int flag = 0;
+    int len = (int)strlen(s2);
     for(int i=0;i<strlen(s1);i++){
-        for(int j=0;j<strlen(newStr);j++){
+        for(int j=0;j<len;j++){
+            //printf("j=%d, i=%d, s1[%d]= %c, newStr[%d]= %c\n", j, i, i, s1[i], j,newStr[j]);
             if(s1[i]==newStr[j]){
                 newStr = removeCharByIndex(newStr, j);
+                len--;
                 flag = 1;
+                break;
             }
         }
         if(flag) flag = 0;
@@ -52,5 +59,15 @@ char * removeCharByIndex(char s[], int index){
         }
     }
     *ptr=0;
+    //printChars(newStr);
     return newStr;
+}
+
+void printChars(char * s){
+    int i = 0;
+    while(s[i]){
+        printf("%c", s[i]);
+        i++;
+    }
+    printf("\n");
 }
