@@ -1,0 +1,58 @@
+
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+
+typedef struct point{
+    int x;
+    int y;
+} POINT;
+
+void setPoint(POINT *p, int x, int y){
+    p->x = x;
+    p->y = y;
+}
+int getPointX(POINT *p){
+    return p->x;
+}
+int getPointY(POINT *p){
+    return p->y;
+}
+
+typedef struct rectangle{
+    POINT p1;
+    POINT p2;
+} RECTANGLE;
+
+
+void newRectangle(RECTANGLE *r){
+    int x, y;
+    printf("Please enter x of first point: ");
+    scanf("%d", &x);
+    printf("Please enter y of first point: ");
+    scanf("%d", &y);
+    POINT firstPoint;
+    setPoint(&firstPoint, x, y);
+    printf("Please enter x of second point: ");
+    scanf("%d", &x);
+    printf("Please enter y of second point: ");
+    scanf("%d", &y);
+    POINT secondPoint;
+    setPoint(&secondPoint, x, y);
+    r->p1 = firstPoint;
+    r->p2 = secondPoint;
+}
+
+int areaRectangle(RECTANGLE *r){
+    int width = abs(r->p1.x - r->p2.x);
+    int height = abs(r->p1.y - r->p2.y);
+    return width*height;
+}
+
+int main(){
+    RECTANGLE r;
+    newRectangle(&r);
+    printf("\nThe area of the rectangle is %d\n", areaRectangle(&r));
+    return 0;
+}
+
