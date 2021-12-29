@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+typedef struct twonum{
+    int num1;
+    int num2;
+}TWONUM;
+
+
+int sumOfTwoNumbers(char s[]){
+    int num1 = 0;
+    int num2 = 0;
+    char zero = '0';
+    char *ptr = s;
+    while(*ptr!= '+'){
+        num1 =(num1)*10+(*ptr-zero);
+        ptr++;
+    }
+    ptr++;
+    while (*ptr!=0) {
+        num2 =(num2)*10+(*ptr-zero);
+        ptr++;
+    }
+    
+    
+    TWONUM num;
+    num.num1 = num1;
+    num.num2 = num2;
+    return num.num1+num.num2;
+}
+
+int main(){
+    char s[] = "1230+123";
+    printf("The result of the %s is %d\n", s, sumOfTwoNumbers(s));
+    return 0;
+}
