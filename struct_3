@@ -1,0 +1,33 @@
+#include <stdio.h>
+#define SIZE 4
+
+typedef struct apartment{
+    int area;
+    int price;
+}APARTMENT;
+
+void newApartment(APARTMENT *a, int area, int price){
+    a->area = area;
+    a->price = price;
+}
+
+void inputAparapemt(APARTMENT *a){
+    printf("Please enter size of the apartment: ");
+    scanf("%d", &(a->area));
+    printf("Please enter price for renting of the apartment: ");
+    scanf("%d", &(a->price));
+}
+
+double avgApartment(APARTMENT a[], int n){
+    double sum = 0;
+    for(int i=0;i<n;i++) sum += (double)a[i].price/a[i].area;
+    return sum/n;
+    
+}
+
+int main(){
+    APARTMENT arr[SIZE];
+    for(int i=0;i<SIZE;i++) inputAparapemt(&arr[i]);
+    printf("The average of aparments is %.2lf\n",avgApartment(arr, SIZE));
+    return 0;
+}
