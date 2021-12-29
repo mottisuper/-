@@ -1,22 +1,16 @@
-
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+
 
 typedef struct point{
     int x;
     int y;
 } POINT;
 
-void setPoint(POINT *p, int x, int y){
+void newPoint(POINT *p, int x, int y){
     p->x = x;
     p->y = y;
-}
-int getPointX(POINT *p){
-    return p->x;
-}
-int getPointY(POINT *p){
-    return p->y;
 }
 
 typedef struct rectangle{
@@ -24,23 +18,11 @@ typedef struct rectangle{
     POINT p2;
 } RECTANGLE;
 
-
-void newRectangle(RECTANGLE *r){
-    int x, y;
-    printf("Please enter x of first point: ");
-    scanf("%d", &x);
-    printf("Please enter y of first point: ");
-    scanf("%d", &y);
-    POINT firstPoint;
-    setPoint(&firstPoint, x, y);
-    printf("Please enter x of second point: ");
-    scanf("%d", &x);
-    printf("Please enter y of second point: ");
-    scanf("%d", &y);
-    POINT secondPoint;
-    setPoint(&secondPoint, x, y);
-    r->p1 = firstPoint;
-    r->p2 = secondPoint;
+void newRectangle(RECTANGLE *r, POINT *p1, POINT *p2){
+    r->p1.x = p1->x;
+    r->p1.y = p1->y;
+    r->p2.x = p2->x;
+    r->p2.y = p2->y;
 }
 
 int areaRectangle(RECTANGLE *r){
@@ -51,8 +33,20 @@ int areaRectangle(RECTANGLE *r){
 
 int main(){
     RECTANGLE r;
-    newRectangle(&r);
-    printf("\nThe area of the rectangle is %d\n", areaRectangle(&r));
+    int xp1, yp1, xp2, yp2;
+    printf("Please enter x of p1: ");
+    scanf("%d",&xp1);
+    printf("Please enter y of p1: ");
+    scanf("%d",&yp1);
+    printf("Please enter x of p2: ");
+    scanf("%d",&xp2);
+    printf("Please enter y of p2: ");
+    scanf("%d",&yp2);
+    POINT p1;
+    newPoint(&p1, xp1, yp1);
+    POINT p2;
+    newPoint(&p2, xp2, yp2);
+    newRectangle(&r, &p1, &p2);
+    printf("The area of the rectangle is %d\n", areaRectangle(&r));
     return 0;
 }
-
