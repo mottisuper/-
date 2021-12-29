@@ -1,0 +1,64 @@
+#include <stdio.h>
+
+typedef struct point{
+    int x;
+    int y;
+} POINT;
+
+void newPoint(POINT *p, int x, int y){
+    p->x = x;
+    p->y = y;
+}
+
+typedef struct triangle{
+    POINT p1;
+    POINT p2;
+    POINT p3;
+} TRIANGLE;
+
+int sign(POINT p1, POINT p2, POINT p3){
+    return (p1.x - p3.x)*(p2.y - p3.y) - (p2.x - p3.x)*(p1.y - p3.y);
+}
+
+int isPointInTriangle(TRIANGLE t, POINT p){
+    int d1, d2, d3;
+    int has_neg, has_pos;
+    
+    d1 = sign(p, t.p1, t.p2);
+    d2 = sign(p, t.p2, t.p3);
+    d3 = sign(p, t.p3, t.p1);
+    //printf("d1 = %d, d2 = %d, d3 = %d\n", d1, d2, d3);
+    has_neg = (d1<0 || d2<0 || d3<0);
+    has_pos = (d1>0 || d2>0 || d3>0);
+    
+    return !(has_pos && has_neg);
+}
+
+
+int main(){
+    
+    TRIANGLE t;
+    
+    printf("Please enter x of p1 of the triangle: ");
+    scanf("%d", &(t.p1.x));
+    printf("Please enter y of p1 of the triangle: ");
+    scanf("%d", &(t.p1.y));
+    printf("Please enter x of p2 of the triangle: ");
+    scanf("%d", &(t.p2.x));
+    printf("Please enter y of p1 of the triangle: ");
+    scanf("%d", &(t.p2.y));
+    printf("Please enter x of p1 of the triangle: ");
+    scanf("%d", &(t.p3.x));
+    printf("Please enter y of p1 of the triangle: ");
+    scanf("%d", &(t.p3.y));
+    
+    POINT p;
+    printf("Please enter X of your point: ");
+    scanf("%d", &(p.x));
+    printf("Please enter Y of your point: ");
+    scanf("%d", &(p.y));
+
+    if(isPointInTriangle(t, p)) printf("The point is inside of the triangle\n");
+    else printf("The point is outside of the triangle\n");
+    
+}
