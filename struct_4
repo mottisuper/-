@@ -31,5 +31,7 @@ int sumOfTwoNumbers(char s[]){
 int main(){
     char s[] = "1230+123";
     printf("The result of the %s is %d\n", s, sumOfTwoNumbers(s));
+    char s1[] = "539+133";
+    printf("The result of the %s is %d\n", s1, sumOfTwoNumbers(s1));
     return 0;
 }
