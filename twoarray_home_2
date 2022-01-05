@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define N 3
+int * mat2(int a[][N], int n);
+void printArray(int a[], int n);
+
+int main(){
+    int a[][N] = {{9,2,4}, {3,7,11}, {3,1,2}};
+    printArray(mat2(a, N), N);
+    
+    return 0;
+}
+
+int * mat2(int a[][N], int n){
+    int * newArray = (int *)calloc(n, sizeof(int));
+    int i, j;
+    for(i=0;i<n;i++){
+        for(j=0;j<n;j++){
+            newArray[i]+=a[i][j];
+            newArray[i]-=a[j][i];
+        }
+    }
+    return newArray;
+}
+
+void printArray(int *a, int n){
+    for(int i=0;i<n;i++)
+    printf("%d ", a[i]);
+    printf("\n");
+}
