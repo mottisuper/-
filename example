@@ -1,0 +1,61 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+int isPoly(int *arr, int n);
+void printArray (int *arr, int n);
+int main(){
+    int arr1[10] = {1,8,8,1,3,4,9,4,9,3};
+    int arr2[5] = {3,4,1,3,4};
+    int arr3[6] = {1,2,3,4,3,3};
+    
+    printf("Array 1: \n");
+    printArray(arr1, 10);
+    printf("Polyndrom? %d\n\n\n", isPoly(arr1, 10));
+
+    printf("Array 2: \n");
+    printArray(arr2, 5);
+    printf("Polyndrom? %d\n\n\n", isPoly(arr2, 5));
+    
+    printf("Array 3: \n");
+    printArray(arr3, 6);
+    printf("Polyndrom? %d\n\n\n", isPoly(arr3, 6));
+    
+    return 0;
+}
+
+int isPoly(int *arr, int n){
+    
+    int * count = (int *)calloc(n, sizeof(int)); //מערך מונים בין 0 לn-1
+    
+    for(int i = 0;i<n;i++){
+        count[arr[i]]++;
+    }
+    
+    
+    //מציג את מה שיש בתוך מערך מונים
+    printf("\nCount: \n");
+    printArray(count, n);
+    printf("\n");
+    
+    int odd = 0;
+    for(int i=0;i<n;i++){
+        if(count[i]%2!=0) odd++;
+        if (odd>1) return 0;
+    }
+    
+    return 1;
+    
+}
+
+void printArray (int *arr, int n){
+    for(int i =0;i<n;i++)
+    printf("(%d) %d\n", i, arr[i]);
+}
+
+
+
+
+
+
+
+
